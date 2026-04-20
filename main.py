@@ -13,7 +13,12 @@ from typing import Dict
 
 import cv2
 import mediapipe as mp
-from mediapipe.python.solutions import pose as mp_pose
+
+if not hasattr(mp, "solutions"):
+    import mediapipe.python.solutions as solutions
+    mp.solutions = solutions
+mp_pose = mp.solutions.pose
+mp_drawing = mp.solutions.drawing_utils
 from mediapipe.python.solutions import drawing_utils as mp_drawing
 import numpy as np
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
