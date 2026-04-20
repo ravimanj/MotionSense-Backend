@@ -13,6 +13,8 @@ from typing import Dict
 
 import cv2
 import mediapipe as mp
+from mediapipe.python.solutions import pose as mp_pose
+from mediapipe.python.solutions import drawing_utils as mp_drawing
 import numpy as np
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
@@ -33,7 +35,7 @@ app.add_middleware(
 )
 
 # ─── MediaPipe ──────────────────────────────────────────────
-mp_pose    = mp.solutions.pose
+pose = mp_pose.Pose()
 PoseLandmark = mp_pose.PoseLandmark
 
 # ─── Angle thresholds per exercise ──────────────────────────
